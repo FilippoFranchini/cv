@@ -1,0 +1,10 @@
+Package: CV
+Type: Package
+Title: Making awesome CV.
+Version: 0.1.0
+Author: Filippo Franchini
+Maintainer: Filippo Franchini <filippo.franchini@outlook.com>
+Description: Compiles awesome CVs using information stored in .csv files.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
