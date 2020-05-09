@@ -2,15 +2,15 @@
 
 ## Main changes
 
-- Made as an R-package for a cleaner strucutre and easier execution.
-- Took out google sheet dependency that caused crashes when compiling pdf. Deleted related functions.
+- Made as an R-package for a cleaner structure and easier execution.
+- Took out Google sheet dependency that caused crashes when compiling pdf. Deleted related functions.
 - Bug fix in css file that was causing errors during compiling.
 - Everything depends on .csv files stored in the /csvs folder.
-- Cleaned .Rmd file for easier interpreatation.
+- Cleaned .Rmd file for easier interpretation.
 
 ## Structure
 
-This repo contains the source-code in R-package format. To load the package on your machine perss `Ctrl + Alt + L`.
+This repo contains the source-code in R-package format. To load the package on your machine press `Ctrl + Alt + L`.
 
 The main files are:
 
