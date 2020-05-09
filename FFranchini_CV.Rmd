@@ -5,22 +5,24 @@ date: "`r Sys.Date()`"
 output:
   pagedown::html_resume:
     css: ['css/custom_resume.css', 'css/styles.css', 'resume']
-    # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
 knit: pagedown::chrome_print
 ---
-
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
   results='asis', 
   echo = FALSE
 )
+
+#loading the required packages
 library(tidyverse)
 library(glue)
 
+#laading the helper functions
 source('R/helpers.R')
 
+#loading csvs files
 position_data <- read_csv("csvs/positions.csv")
 skills        <- read_csv("csvs/language_skills.csv")
 text_blocks   <- read_csv("csvs/text_blocks.csv")
@@ -41,8 +43,6 @@ position_data <- position_data %>%
     )
   ) 
 ```
-
-
 
 Aside
 ================================================================================
@@ -68,7 +68,7 @@ build_skill_bars(skills)
 
 Software {#open-source}
 --------------------------------------------------------------------------------
-
+[**cv**](https://github.com/FilippoFranchini/cv): (contributor) Creates awesome data-driven cv's.
 [**ascr**](https://github.com/FilippoFranchini/ascr): (contributor) Maps sound sources using fixed microphone arrays.
 [**dshm**](https://github.com/FilippoFranchini/dshm): (author) Fits two-stage density surface Hurdle models and automates labour-intensive GIS routines. 
 **adas**: (author, private) Maps sound sources using moving microphone arrays.
@@ -88,7 +88,7 @@ Disclaimer {#disclaimer}
 
 Made w/ [**pagedown**](https://github.com/rstudio/pagedown). 
 
-Source code: [github.com/nstrayer/cv](https://github.com/nstrayer/cv).
+Source code on my [**GitHub**](https://github.com/FilippoFranchini/cv).
 
 Last updated on `r Sys.Date()`.
 
