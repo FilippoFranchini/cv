@@ -1,6 +1,6 @@
-#Forked and edited from https://github.com/nstrayer/cv
+# Forked and edited from https://github.com/nstrayer/cv
 
-##Main changes
+## Main changes
 
 - Made as an R-package for a cleaner strucutre and easier execution.
 - Took out google sheet dependency that caused crashes when compiling pdf. Deleted related functions.
