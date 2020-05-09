@@ -1,12 +1,13 @@
 ---
-title: Nick Strayer's Resume"
-author: Nick Strayer
+title: Filippo Franchini's Resume"
+author: Filippo Franchini
 date: "`r Sys.Date()`"
 output:
   pagedown::html_resume:
     css: ['css/custom_resume.css', 'css/styles.css', 'resume']
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
+knit: pagedown::chrome_print
 ---
 
 
@@ -18,41 +19,14 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(glue)
 
-# ======================================================================
-# These variables determine how the the data is loaded and how the exports are
-# done.
+source('R/helpers.R')
 
-# Is data stored in google sheets? If no data will be gather from the csvs/
-# folder in project
-using_googlesheets <- TRUE
-
-# Just the copied URL from the sheet
-positions_sheet_loc <- "https://docs.google.com/spreadsheets/d/14MQICF2F8-vf8CKPF1m4lyGKO6_thG-4aSwat1e2TWc"
-
-# Is this sheet available for anyone to read? If you're using a private sheet
-# set this to false and go to gather_data.R and run the data loading manually
-# once to cache authentication
-sheet_is_publicly_readable <- TRUE
-
-# Is the goal of this knit to build a document that is exported to PDF? If so
-# set this to true to have links turned into footnotes at the end of the
-# document
-PDF_EXPORT <- FALSE
-
-
-# A global (gasp) variable that holds all the links that were inserted for
-# placement at the end
-links <- c()
-
-# ======================================================================
-# Now we source two external scripts. One contains functions for building the
-# text output and the other loads up our data from either googlesheets or csvs
-
-# Functions for building sections from CSV data
-source('parsing_functions.R') 
-
-# Load data for CV/Resume
-source('gather_data.R')
+position_data <- read_csv("csvs/positions.csv")
+skills        <- read_csv("csvs/language_skills.csv")
+text_blocks   <- read_csv("csvs/text_blocks.csv")
+contact_info  <- read_csv("csvs/contact_info.csv") %>% as.data.frame()
+contact_info1 <- contact_info[c(1:2),]
+contact_info2 <- contact_info[c(3:length(contact_info[,1])),]
 
 # Now we just need to filter down the position data to include less verbose
 # categories and only the entries we have designated for the resume
@@ -74,43 +48,40 @@ Aside
 ================================================================================
 
 
-![logo](logo.png){width=100%}
+![portrait](portrait.png){width=80%}
 
 Contact {#contact}
 --------------------------------------------------------------------------------
 
 ```{r}
-contact_info %>% 
-  glue_data("- <i class='fa fa-{icon}'></i> {contact}")
+contact_info1 %>% 
+  glue_data("- <i class='{type} fa-{icon}'></i> {tag}")
+contact_info2 %>% 
+  glue_data("- <i class='{type} fa-{icon}'></i> [{tag}]({link})")
 ```
 
-
-
-Language Skills {#skills}
+Coding Skills {#skills}
 --------------------------------------------------------------------------------
-
 ```{r}
 build_skill_bars(skills)
 ```
 
-
-
-Open Source Contributions {#open-source}
+Software {#open-source}
 --------------------------------------------------------------------------------
 
-All projects available at `github.com/nstrayer/<name>`
+[**ascr**](https://github.com/FilippoFranchini/ascr): (contributor) Maps sound sources using fixed microphone arrays.
+[**dshm**](https://github.com/FilippoFranchini/dshm): (author) Fits two-stage density surface Hurdle models and automates labour-intensive GIS routines. 
+**adas**: (author, private) Maps sound sources using moving microphone arrays.
 
-
-- `shinysense`: R package to use sensor data in Shiny apps
-- `tuftesque`: Hugo theme (behind LiveFreeOrDichotomize.com)
-- `sbmR`: R package for fitting stochasitic block models
-
-
-More info {#more-info}
+Languages {#languages}
 --------------------------------------------------------------------------------
+**Italian**: Native
 
-See full CV at nickstrayer.me/cv for more complete list of positions and publications.
+**English**: Fluent
 
+**German**: Fluent
+
+**French**: Proficient
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
@@ -126,7 +97,7 @@ Last updated on `r Sys.Date()`.
 Main
 ================================================================================
 
-Nick Strayer {#title}
+Filippo Franchini {#title}
 --------------------------------------------------------------------------------
 
 ```{r}
