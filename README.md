@@ -1,3 +1,7 @@
+#Cloned and Edited from https://github.com/nstrayer/cv
+
+##Main changes
+
 ## My pagedown rendered CV
 
 __Switch to googlesheets__
