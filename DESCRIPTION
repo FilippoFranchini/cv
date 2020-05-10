@@ -12,4 +12,5 @@ Imports: pagedown,
     tidyverse,
     glue,
     knitr,
-    rmarkdown
+    rmarkdown,
+    purrr
