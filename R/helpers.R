@@ -47,15 +47,14 @@ print_section <- function(position_data, section_id){
     glue_data(
       "### {title}",
       "\n\n",
-      "{loc}",
-      "\n\n",
       "{institution}",
+      "\n\n",
+      "{loc}",
       "\n\n",
       "{timeline}",
       "\n\n",
       "{description_bullets}",
-      "\n\n\n",
-    )
+      "\n\n\n")
 }
 
 # Construct a bar chart of skills
