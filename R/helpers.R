@@ -45,7 +45,7 @@ print_section <- function(position_data, section_id){
     ) %>%
     strip_links_from_cols(c('title', 'description_bullets')) %>%
     mutate_all(~ifelse(is.na(.), 'N/A', .)) %>%
-    when(section_id == "awards" | section_id == "interests" ~ glue_data(.,"{title}","\n\n"), 
+    when(section_id == "awards" | section_id == "interests" | section_id == "experience-plus" ~ glue_data(.,"{title}","\n\n"), 
          ~glue_data(.,"### {title}","\n\n","{institution}","\n\n",
                     "{loc}","\n\n","{timeline}","\n\n","{description_bullets}","\n\n\n"))
 
