@@ -18,13 +18,16 @@ knitr::opts_chunk$set(
 #loading the required packages
 library(tidyverse)
 library(glue)
+library(purrr)
 
 #laading the helper functions
 source('R/helpers.R')
 
 #loading csvs files
+software <- read_csv("csvs/software.csv")
+languages <- read_csv("csvs/languages.csv")
 position_data <- read_csv("csvs/positions.csv")
-skills        <- read_csv("csvs/language_skills.csv")
+coding_skills <- read_csv("csvs/coding.csv")
 text_blocks   <- read_csv("csvs/text_blocks.csv")
 contact_info  <- read_csv("csvs/contact_info.csv") %>% as.data.frame()
 contact_info1 <- contact_info[c(1:2),]
@@ -52,7 +55,6 @@ Aside
 
 Contact {#contact}
 --------------------------------------------------------------------------------
-
 ```{r}
 contact_info1 %>% 
   glue_data("- <i class='{type} fa-{icon}'></i> {tag}")
@@ -63,25 +65,22 @@ contact_info2 %>%
 Coding Skills {#skills}
 --------------------------------------------------------------------------------
 ```{r}
-build_skill_bars(skills)
+build_skill_bars(coding_skills)
 ```
 
 Software {#open-source}
 --------------------------------------------------------------------------------
-[**cv**](https://github.com/FilippoFranchini/cv): (contributor) Creates awesome data-driven cv's.
-[**ascr**](https://github.com/FilippoFranchini/ascr): (contributor) Maps sound sources using fixed microphone arrays.
-[**dshm**](https://github.com/FilippoFranchini/dshm): (author) Fits two-stage density surface Hurdle models and automates labour-intensive GIS routines. 
-**adas**: (author, private) Maps sound sources using moving microphone arrays.
+```{r}
+software %>% 
+  glue_data("[**{name}**]({link}): {description}")
+```
+
 
 Languages {#languages}
 --------------------------------------------------------------------------------
-**Italian**: Native
-
-**English**: Fluent
-
-**German**: Fluent
-
-**French**: Proficient
+```{r}
+build_skill_bars(languages)
+```
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
@@ -93,18 +92,60 @@ Source code on my [**GitHub**](https://github.com/FilippoFranchini/cv).
 Last updated on `r Sys.Date()`.
 
 
-
 Main
 ================================================================================
 
 Filippo Franchini {#title}
 --------------------------------------------------------------------------------
+__Summary__
 
 ```{r}
 print_text_block(text_blocks, 'intro')
 ```
 
+Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
 
+```{r}
+position_data %>% print_section('experience')
+```
+
+Funding {data-icon=money-check-alt}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('funding')
+```
+
+\newpage 
+
+::: aside
+
+<br>
+
+### <i class='fas fa-award'></i> Prizes & Awards
+
+```{r}
+position_data %>% print_section('awards')
+```
+
+<br>
+
+### <i class='fas fa-suitcase'></i> Additional Experience
+
+```{r}
+position_data %>% print_section('experience-plus')
+```
+
+<br>
+
+### Interests
+
+```{r}
+position_data %>% print_section('interests')
+```
+
+:::
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
@@ -113,22 +154,9 @@ Education {data-icon=graduation-cap data-concise=true}
 position_data %>% print_section('education')
 ```
 
-
-
-Selected Positions {data-icon=suitcase}
+Publications {data-icon=newspaper data-concise=true}
 --------------------------------------------------------------------------------
 
 ```{r}
-position_data %>% print_section('positions')
+position_data %>% print_section('publications')
 ```
-
-
-
-Selected Writing {data-icon=newspaper}
---------------------------------------------------------------------------------
-
-```{r}
-position_data %>% print_section('writings')
-```
-
-
