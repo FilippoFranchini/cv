@@ -8,6 +8,7 @@ Description: Compiles awesome CVs using information stored in .csv files.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 4.0.0)
 Imports: pagedown,
     tidyverse,
     glue,
